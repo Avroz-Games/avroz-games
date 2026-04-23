@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrinho | NEOGEO+</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="announcement">
+    <p>ANÚNCIO: Frete grátis para todo o Brasil em compras acima de R$ 499,00</p>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img class="logo-mark" src="img/brand/diamond.svg" alt="" />
+        <span class="logo-text">NEOGEO<span class="logo-plus">+</span></span>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="produtos.html">Catálogo</a></li>
+          <li><a href="produtos.html?promo=1">Promoções</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="carrinho.html" class="icon-btn cart-btn active" aria-label="Carrinho">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2.5 12.5A2 2 0 0 0 9.5 18H19a2 2 0 0 0 2-1.6L22.5 8H6"/><circle cx="10" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-head">
+    <div class="container">
+      <nav class="breadcrumb"><a href="index.html">Home</a> / <span>Carrinho</span></nav>
+      <h1>Seu Carrinho</h1>
+    </div>
+  </section>
+
+  <section class="section cart-section">
+    <div class="container cart-layout">
+      <div class="cart-items" id="cartItems"></div>
+
+      <aside class="cart-summary">
+        <h3>Resumo do pedido</h3>
+        <div class="summary-row"><span>Subtotal</span><strong id="sumSubtotal">R$ 0,00</strong></div>
+        <div class="summary-row"><span>Frete</span><strong id="sumShipping">Grátis</strong></div>
+        <div class="summary-row discount" id="sumDiscountRow" style="display:none;"><span id="sumDiscountLabel">Desconto</span><strong id="sumDiscount">- R$ 0,00</strong></div>
+        <hr />
+        <div class="summary-row total"><span id="sumTotalLabel">Total</span><strong id="sumTotal">R$ 0,00</strong></div>
+
+        <div class="coupon">
+          <input type="text" id="couponInput" placeholder="Cupom de desconto" />
+          <button class="btn btn-outline" id="applyCoupon">Aplicar</button>
+        </div>
+
+        <button class="btn btn-primary btn-block btn-lg btn-whatsapp" id="checkoutBtn">
+          <img class="inline-icon" src="img/social/whatsapp.svg" alt="" />
+          Finalizar no WhatsApp
+        </button>
+        <a href="produtos.html" class="btn btn-ghost btn-block">Continuar comprando</a>
+
+        <p class="secure-note"><img class="inline-icon" src="img/icons/lock.svg" alt="" /> Atendimento humano pelo WhatsApp • Envio em todo o Brasil</p>
+      </aside>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>© 2026 NEOGEO+ • Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEOGEO+ | Loja Oficial Neo Geo AES+</title>
+  <meta name="description" content="NEOGEO+ — loja oficial da linha Neo Geo AES+: console, arcade stick, gamepad, cartuchos e memory card. Pré-venda aberta. Lançamento 12/11/2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement">
+    <p><img class="inline-icon" src="img/icons/zap.svg" alt="" /> PRÉ-VENDA ABERTA: Neo Geo AES+ — Lançamento 12/11/2026 &nbsp;•&nbsp; Parcele em até 12x sem juros</p>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img class="logo-mark" src="img/brand/diamond.svg" alt="" />
+        <span class="logo-text">NEOGEO<span class="logo-plus">+</span></span>
+      </a>
+
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="produtos.html?cat=consoles">Consoles</a></li>
+          <li><a href="produtos.html?cat=jogos">Jogos</a></li>
+          <li><a href="produtos.html?cat=controles">Controles</a></li>
+          <li><a href="produtos.html?cat=acessorios">Acessórios</a></li>
+          <li><a href="produtos.html">Catálogo</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="searchBtn" aria-label="Pesquisar">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </button>
+        <a href="#" class="icon-btn" aria-label="Conta">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+        </a>
+        <a href="carrinho.html" class="icon-btn cart-btn" aria-label="Carrinho">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2.5 12.5A2 2 0 0 0 9.5 18H19a2 2 0 0 0 2-1.6L22.5 8H6"/><circle cx="10" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search bar (toggled) -->
+    <div class="search-bar" id="searchBar">
+      <div class="container">
+        <input type="search" id="searchInput" placeholder="Pesquise por jogos, consoles, controles..." />
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <span class="hero-tag">PRÉ-VENDA ▸ NEO GEO AES+</span>
+        <h1 class="hero-title">
+          O RETORNO DO <span class="glitch" data-text="LENDÁRIO">LENDÁRIO</span>
+        </h1>
+        <p class="hero-sub">
+          A linha oficial Neo Geo AES+ com execução nativa em chips ASIC. Compatível com cartuchos AES originais e novos, saída HDMI e AV. Lançamento 12/11/2026.
+        </p>
+        <div class="hero-cta">
+          <a href="produto.html?id=neo-geo-aes-plus-original" class="btn btn-primary">Reservar Neo Geo AES+</a>
+          <a href="produtos.html?cat=consoles" class="btn btn-ghost">Ver 3 edições ▸</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>3</strong><span>Edições disponíveis</span></div>
+          <div><strong>10</strong><span>Jogos clássicos SNK</span></div>
+          <div><strong>ASIC</strong><span>Hardware nativo</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-arcade">
+          <div class="screen"><span>NEOGEO+</span></div>
+          <div class="joystick"></div>
+          <div class="buttons">
+            <span class="b b1"></span>
+            <span class="b b2"></span>
+            <span class="b b3"></span>
+            <span class="b b4"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="section categories">
+    <div class="container">
+      <header class="section-head">
+        <h2>Navegue por Categoria</h2>
+        <p>Encontre o que procura rapidamente</p>
+      </header>
+      <div class="cat-grid">
+        <a class="cat-card" href="produtos.html?cat=consoles">
+          <div class="cat-thumb"><img src="img/NEOGEO_Product.png" alt="Neo Geo AES+" loading="lazy" /></div>
+          <h3>Consoles</h3>
+          <p>Neo Geo AES+ Original, Anniversary e Ultimate</p>
+        </a>
+        <a class="cat-card" href="produtos.html?cat=jogos">
+          <div class="cat-thumb"><img src="img/games/metal-slug.jpg" alt="Cartuchos AES+" loading="lazy" /></div>
+          <h3>Jogos</h3>
+          <p>Cartuchos AES+ (10 títulos clássicos)</p>
+        </a>
+        <a class="cat-card" href="produtos.html?cat=controles">
+          <div class="cat-thumb"><img src="img/NEOGEOStick_Product.png" alt="Arcade Stick" loading="lazy" /></div>
+          <h3>Controles</h3>
+          <p>Arcade Stick e Gamepad Wireless AES+</p>
+        </a>
+        <a class="cat-card" href="produtos.html?cat=acessorios">
+          <div class="cat-thumb"><img src="img/NEOGEOMem_Product.png" alt="Memory Card" loading="lazy" /></div>
+          <h3>Acessórios</h3>
+          <p>Memory Card AES+</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINHA NEO GEO AES+ -->
+  <section class="section promo-section">
+    <div class="container">
+      <header class="section-head">
+        <span class="eyebrow">PRÉ-VENDA • LANÇAMENTO 12/11/2026</span>
+        <h2>Linha Completa Neo Geo AES+</h2>
+        <p>O retorno oficial do console mais icônico da SNK — execução nativa em chips ASIC</p>
+      </header>
+      <div class="product-grid" id="promoGrid"></div>
+    </div>
+  </section>
+
+  <!-- DESTAQUES -->
+  <section class="section featured-section">
+    <div class="container">
+      <header class="section-head">
+        <span class="eyebrow">TOP CHARTS</span>
+        <h2>Produtos em Destaque</h2>
+        <p>Os mais queridos pelos nossos clientes</p>
+      </header>
+      <div class="product-grid" id="featuredGrid"></div>
+      <div class="center-cta">
+        <a href="produtos.html" class="btn btn-ghost">Ver todos os produtos ▸</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNERS DE SERVIÇO -->
+  <section class="section service-banners">
+    <div class="container">
+      <div class="banner-grid">
+        <div class="banner">
+          <h3>RESERVE AGORA</h3>
+          <p>Pré-venda aberta com preços fixos. Lançamento 12/11/2026 e envio direto da nossa filial europeia.</p>
+          <a href="produto.html?id=neo-geo-aes-plus-original" class="btn btn-outline">RESERVAR</a>
+        </div>
+        <div class="banner banner-alt">
+          <h3>3 EDIÇÕES EXCLUSIVAS</h3>
+          <p>Escolha entre Original, Anniversary (branca) e Ultimate (premium numerada com 10 cartuchos).</p>
+          <a href="produtos.html?cat=consoles" class="btn btn-outline">VER EDIÇÕES</a>
+        </div>
+        <div class="banner">
+          <h3>10 CLÁSSICOS SNK</h3>
+          <p>Metal Slug, KOF 2002, Garou, Samurai Shodown V Special e muito mais em cartucho AES+.</p>
+          <a href="produtos.html?cat=jogos" class="btn btn-outline">VER JOGOS</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES / GARANTIAS -->
+  <section class="section features">
+    <div class="container feature-grid">
+      <div class="feature">
+        <img class="feature-icon" src="img/icons/truck.svg" alt="" />
+        <div><strong>Frete para todo Brasil</strong><span>Enviamos em até 48h</span></div>
+      </div>
+      <div class="feature">
+        <img class="feature-icon" src="img/icons/shield-check.svg" alt="" />
+        <div><strong>Garantia de 3 meses</strong><span>Em todos os produtos</span></div>
+      </div>
+      <div class="feature">
+        <img class="feature-icon" src="img/icons/credit-card.svg" alt="" />
+        <div><strong>Parcele em 12x</strong><span>Sem juros no cartão</span></div>
+      </div>
+      <div class="feature">
+        <img class="feature-icon" src="img/icons/lock.svg" alt="" />
+        <div><strong>Compra Segura</strong><span>Certificado SSL</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq-section">
+    <div class="container">
+      <header class="section-head">
+        <h2>Perguntas Frequentes</h2>
+      </header>
+      <div class="faq">
+        <details open>
+          <summary>Qual a diferença entre as edições Original, Anniversary e Ultimate?</summary>
+          <p>A <strong>Original</strong> (R$ 2.499,99) é a porta de entrada, com console preto, 1 arcade stick com fio, cabo HDMI e fonte. A <strong>Anniversary</strong> (R$ 3.299,99) é a edição comemorativa branca e inclui joystick sem fio, cartucho Metal Slug e memory card. A <strong>Ultimate</strong> (R$ 6.499,99) é a versão premium numerada com 3 controles, memory card e os <strong>10 cartuchos de lançamento</strong>.</p>
+        </details>
+        <details>
+          <summary>Quando chega o Neo Geo AES+? É pré-venda?</summary>
+          <p>Sim, todos os produtos da linha são pré-venda com <strong>lançamento previsto para 12 de novembro de 2026</strong>. Garanta já sua unidade — a Edição Ultimate tem tiragem extremamente limitada.</p>
+        </details>
+        <details>
+          <summary>O Neo Geo AES+ é emulador?</summary>
+          <p>Não! O console utiliza <strong>chips ASIC para execução nativa</strong>, reproduzindo a experiência original do sistema sem emulação tradicional. É compatível com cartuchos Neo Geo AES originais e novos.</p>
+        </details>
+        <details>
+          <summary>Quais jogos estão disponíveis?</summary>
+          <p>A primeira leva conta com 10 títulos clássicos SNK: Metal Slug, The King of Fighters 2002, Garou: Mark of the Wolves, Big Tournament Golf, Shock Troopers, Samurai Shodown V Special, Pulstar, Twinkle Star Sprites, Magician Lord e Over Top.</p>
+        </details>
+        <details>
+          <summary>Posso usar meus cartuchos AES originais?</summary>
+          <p>Sim! O Neo Geo AES+ é totalmente compatível com cartuchos Neo Geo AES <strong>originais e novos</strong>, e mantém recursos clássicos como interruptores DIP e slot para memory card.</p>
+        </details>
+        <details>
+          <summary>Há impostos ou taxas extras?</summary>
+          <p>Não! <strong>Preço final</strong>. Os produtos são importados da nossa filial europeia e enviados a partir de Belo Horizonte, sem adição de impostos extras no checkout.</p>
+        </details>
+        <details>
+          <summary>Quais formas de pagamento são aceitas?</summary>
+          <p>Aceitamos Pix, cartão de crédito em até 12x sem juros e boleto bancário. O valor cobrado é o mesmo exibido no anúncio.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <div class="container newsletter-inner">
+      <div>
+        <h3>Entre no Clube NEOGEO+</h3>
+        <p>Cupons, pré-vendas e lançamentos em primeira mão no seu e-mail.</p>
+      </div>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Inscrição confirmada!');">
+        <input type="email" required placeholder="seu@email.com" />
+        <button class="btn btn-primary" type="submit">Inscrever</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="logo">
+          <img class="logo-mark" src="img/brand/diamond.svg" alt="" />
+          <span class="logo-text">NEOGEO<span class="logo-plus">+</span></span>
+        </a>
+        <p class="footer-about">Loja oficial da linha Neo Geo AES+. Console, arcade stick, gamepad, cartuchos e memory card — o retorno do lendário da SNK direto na sua casa.</p>
+        <div class="social">
+          <a href="#" aria-label="Twitter / X"><img src="img/social/x.svg" alt="X" /></a>
+          <a href="#" aria-label="Instagram"><img src="img/social/instagram.svg" alt="Instagram" /></a>
+          <a href="#" aria-label="YouTube"><img src="img/social/youtube.svg" alt="YouTube" /></a>
+          <a href="#" aria-label="Discord"><img src="img/social/discord.svg" alt="Discord" /></a>
+        </div>
+      </div>
+      <div>
+        <h4>Loja</h4>
+        <ul>
+          <li><a href="produtos.html">Todos os produtos</a></li>
+          <li><a href="produtos.html?cat=consoles">Consoles</a></li>
+          <li><a href="produtos.html?cat=jogos">Jogos</a></li>
+          <li><a href="produtos.html?cat=controles">Controles</a></li>
+          <li><a href="produtos.html?promo=1">Promoções</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ajuda</h4>
+        <ul>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="#">Prazos de entrega</a></li>
+          <li><a href="#">Trocas e devoluções</a></li>
+          <li><a href="#">Política de privacidade</a></li>
+          <li><a href="#">Termos de uso</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Pagamento</h4>
+        <ul class="payment-list">
+          <li><img src="img/payments/visa.svg" alt="Visa" /><span>Visa</span></li>
+          <li><img src="img/payments/mastercard.svg" alt="Mastercard" /><span>Mastercard</span></li>
+          <li><img src="img/payments/elo.svg" alt="Elo" /><span>Elo</span></li>
+          <li><img src="img/payments/pix.svg" alt="Pix" /><span>Pix</span></li>
+          <li><img src="img/payments/paypal.svg" alt="PayPal" /><span>PayPal</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2026 NEOGEO+ • Todos os direitos reservados • CNPJ 00.000.000/0001-00</p>
+    </div>
+  </footer>
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
