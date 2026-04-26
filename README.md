@@ -112,9 +112,9 @@ AVROZ RETROGAMES/
 - **Tema escuro neon** inspirado em fliperamas
 
 ### Cupom ativo
-| Código  | Desconto | Condição                        |
-|---------|----------|---------------------------------|
-| `PIX5`  | 5%       | Válido somente no pagamento PIX |
+| Código    | Desconto | Condição                        |
+|-----------|----------|---------------------------------|
+| `MAD2026` | 5%       | Válido somente no pagamento PIX |
 
 > O cupom não é divulgado nas páginas do site. Sem cupom, o valor cobrado é exatamente o mesmo do anúncio.
 

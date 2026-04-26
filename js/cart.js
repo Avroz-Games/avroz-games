@@ -12,10 +12,10 @@
   // WhatsApp da loja (apenas dígitos, com DDI). Número oficial: +55 (19) 99415-9689
   const WHATSAPP_NUMBER = "5519994159689";
 
-  // Cupom PIX — único cupom válido, concede 5% de desconto exclusivamente
+  // Cupom MAD2026 — concede 5% de desconto exclusivamente
   // no pagamento via PIX. Sem cupom, o valor cobrado é o mesmo do anúncio.
   const COUPONS = {
-    PIX5: { rate: 0.05, type: "pix", label: "Desconto PIX (-5%)" },
+    MAD2026: { rate: 0.05, type: "pix", label: "Desconto MAD2026 PIX (-5%)" },
   };
 
   let activeCoupon = null; // { code, rate, type, label } ou null
