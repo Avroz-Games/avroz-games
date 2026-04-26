@@ -11,7 +11,7 @@
 </head>
 <body>
   <div class="announcement">
-    <p>ANÚNCIO: Frete grátis para todo o Brasil em compras acima de R$ 499,00</p>
+    <p>ANÚNCIO: Atendimento personalizado para confirmar entrega e pagamento</p>
   </div>
 
   <header class="site-header">
@@ -49,15 +49,75 @@
 
   <section class="section cart-section">
     <div class="container cart-layout">
-      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-main">
+        <div class="cart-items" id="cartItems"></div>
+
+        <form class="checkout-form" id="checkoutForm">
+          <h2>Dados para envio</h2>
+          <p>Preencha seus dados para que possamos confirmar a entrega e finalizar o pedido pelo WhatsApp.</p>
+
+          <div class="field-row">
+            <label>Nome completo
+              <input type="text" id="customerName" name="name" required autocomplete="name" placeholder="Seu nome completo" />
+            </label>
+            <label>CPF
+              <input type="text" id="customerDocument" name="document" required inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" />
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label>E-mail
+              <input type="email" id="customerEmail" name="email" required autocomplete="email" placeholder="seu@email.com" />
+            </label>
+            <label>Telefone / WhatsApp
+              <input type="tel" id="customerPhone" name="phone" required autocomplete="tel" placeholder="(00) 00000-0000" />
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label>CEP
+              <input type="text" id="customerZip" name="zip" required inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" />
+            </label>
+            <label>Estado
+              <input type="text" id="customerState" name="state" required maxlength="2" autocomplete="address-level1" placeholder="UF" />
+            </label>
+          </div>
+
+          <label>Endereço
+            <input type="text" id="customerStreet" name="street" required autocomplete="address-line1" placeholder="Rua, avenida, travessa..." />
+          </label>
+
+          <div class="field-row">
+            <label>Número
+              <input type="text" id="customerNumber" name="number" required autocomplete="address-line2" placeholder="Número" />
+            </label>
+            <label>Complemento
+              <input type="text" id="customerComplement" name="complement" autocomplete="address-line3" placeholder="Apartamento, bloco, casa..." />
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label>Bairro
+              <input type="text" id="customerDistrict" name="district" required autocomplete="address-level3" placeholder="Bairro" />
+            </label>
+            <label>Cidade
+              <input type="text" id="customerCity" name="city" required autocomplete="address-level2" placeholder="Cidade" />
+            </label>
+          </div>
+
+          <label>Ponto de referência
+            <input type="text" id="customerReference" name="reference" placeholder="Opcional" />
+          </label>
+        </form>
+      </div>
 
       <aside class="cart-summary">
         <h3>Resumo do pedido</h3>
         <div class="summary-row"><span>Subtotal</span><strong id="sumSubtotal">R$ 0,00</strong></div>
-        <div class="summary-row"><span>Frete</span><strong id="sumShipping">Grátis</strong></div>
+        <div class="summary-row"><span>Frete</span><strong id="sumShipping">A calcular</strong></div>
         <div class="summary-row discount" id="sumDiscountRow" style="display:none;"><span id="sumDiscountLabel">Desconto</span><strong id="sumDiscount">- R$ 0,00</strong></div>
         <hr />
-        <div class="summary-row total"><span id="sumTotalLabel">Total</span><strong id="sumTotal">R$ 0,00</strong></div>
+        <div class="summary-row total"><span id="sumTotalLabel">Total dos produtos</span><strong id="sumTotal">R$ 0,00</strong></div>
 
         <div class="coupon">
           <input type="text" id="couponInput" placeholder="Cupom de desconto" />
@@ -70,7 +130,7 @@
         </button>
         <a href="produtos.html" class="btn btn-ghost btn-block">Continuar comprando</a>
 
-        <p class="secure-note"><img class="inline-icon" src="img/icons/lock.svg" alt="" /> Atendimento humano pelo WhatsApp • Envio em todo o Brasil</p>
+        <p class="secure-note"><img class="inline-icon" src="img/icons/lock.svg" alt="" /> Atendimento humano pelo WhatsApp • Entrega confirmada com seus dados</p>
       </aside>
     </div>
   </section>

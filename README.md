@@ -106,7 +106,8 @@ AVROZ RETROGAMES/
 - **Carrinho** com:
   - Persistência no `localStorage` (sobrevive ao refresh)
   - Alteração de quantidade e remoção
-  - Cálculo de frete (grátis acima de R$ 499)
+  - Cadastro obrigatório com dados de contato e endereço
+  - Frete a calcular após confirmação do endereço
   - Cupom PIX exclusivo (não divulgado na página)
 - **Responsivo** (desktop, tablet, mobile)
 - **Tema escuro neon** inspirado em fliperamas

@@ -6,9 +6,6 @@
   const itemsEl = document.getElementById("cartItems");
   if (!itemsEl) return;
 
-  const FREE_SHIPPING_FROM = 499;
-  const SHIPPING_FEE = 29.9;
-
   // WhatsApp da loja (apenas dígitos, com DDI). Número oficial: +55 (19) 99415-9689
   const WHATSAPP_NUMBER = "5519994159689";
 
@@ -19,6 +16,8 @@
   };
 
   let activeCoupon = null; // { code, rate, type, label } ou null
+
+  const checkoutForm = document.getElementById("checkoutForm");
 
   function renderItems() {
     if (Cart.items.length === 0) {
@@ -81,16 +80,14 @@
 
   function renderSummary() {
     const subtotal = Cart.subtotal();
-    const shipping = subtotal === 0 ? 0 : subtotal >= FREE_SHIPPING_FROM ? 0 : SHIPPING_FEE;
 
     // O desconto SÓ existe quando há cupom aplicado.
     const couponRate = activeCoupon ? activeCoupon.rate : 0;
     const couponValue = subtotal * couponRate;
-    const total = Math.max(0, subtotal - couponValue + shipping);
+    const total = Math.max(0, subtotal - couponValue);
 
     document.getElementById("sumSubtotal").textContent = formatBRL(subtotal);
-    document.getElementById("sumShipping").textContent =
-      subtotal === 0 ? "—" : shipping === 0 ? "Grátis" : formatBRL(shipping);
+    document.getElementById("sumShipping").textContent = subtotal === 0 ? "—" : "A calcular";
 
     // Linha de desconto — visível apenas com cupom ativo
     const discountRow = document.getElementById("sumDiscountRow");
@@ -104,12 +101,12 @@
       discountRow.style.display = "none";
     }
 
-    // Rótulo do total: muda para "Total no PIX" quando há cupom PIX ativo
+    // Rótulo do total: muda para PIX quando há cupom ativo.
     const totalLabel = document.getElementById("sumTotalLabel");
     if (activeCoupon && activeCoupon.type === "pix") {
-      totalLabel.textContent = "Total à vista no PIX";
+      totalLabel.textContent = "Total dos produtos no PIX";
     } else {
-      totalLabel.textContent = "Total";
+      totalLabel.textContent = "Total dos produtos";
     }
 
     document.getElementById("sumTotal").textContent = formatBRL(total);
@@ -139,17 +136,51 @@
     renderSummary();
   });
 
+  function getCheckoutData() {
+    return {
+      name: document.getElementById("customerName").value.trim(),
+      document: document.getElementById("customerDocument").value.trim(),
+      email: document.getElementById("customerEmail").value.trim(),
+      phone: document.getElementById("customerPhone").value.trim(),
+      zip: document.getElementById("customerZip").value.trim(),
+      state: document.getElementById("customerState").value.trim().toUpperCase(),
+      street: document.getElementById("customerStreet").value.trim(),
+      number: document.getElementById("customerNumber").value.trim(),
+      complement: document.getElementById("customerComplement").value.trim(),
+      district: document.getElementById("customerDistrict").value.trim(),
+      city: document.getElementById("customerCity").value.trim(),
+      reference: document.getElementById("customerReference").value.trim(),
+    };
+  }
+
   // Monta a mensagem de pedido que será enviada ao WhatsApp da loja.
   // Mantém o formato enxuto e em texto puro para facilitar a leitura pelo atendente.
-  function buildWhatsAppMessage() {
+  function buildWhatsAppMessage(customer) {
     const subtotal = Cart.subtotal();
-    const shipping = subtotal === 0 ? 0 : subtotal >= FREE_SHIPPING_FROM ? 0 : SHIPPING_FEE;
     const couponRate = activeCoupon ? activeCoupon.rate : 0;
     const couponValue = subtotal * couponRate;
-    const total = Math.max(0, subtotal - couponValue + shipping);
+    const total = Math.max(0, subtotal - couponValue);
 
     const lines = [];
     lines.push("Olá! Quero finalizar meu pedido na AVROZ RETROGAMES.");
+    lines.push("");
+    lines.push("*Dados do cliente:*");
+    lines.push(`Nome: ${customer.name}`);
+    lines.push(`CPF: ${customer.document}`);
+    lines.push(`E-mail: ${customer.email}`);
+    lines.push(`Telefone/WhatsApp: ${customer.phone}`);
+    lines.push("");
+    lines.push("*Endereço de entrega:*");
+    lines.push(`CEP: ${customer.zip}`);
+    lines.push(`Endereço: ${customer.street}, ${customer.number}`);
+    if (customer.complement) {
+      lines.push(`Complemento: ${customer.complement}`);
+    }
+    lines.push(`Bairro: ${customer.district}`);
+    lines.push(`Cidade/UF: ${customer.city}/${customer.state}`);
+    if (customer.reference) {
+      lines.push(`Referência: ${customer.reference}`);
+    }
     lines.push("");
     lines.push("*Itens do pedido:*");
     Cart.items.forEach((item) => {
@@ -161,11 +192,11 @@
     lines.push("");
     lines.push("*Resumo:*");
     lines.push(`Subtotal: ${formatBRL(subtotal)}`);
-    lines.push(`Frete: ${shipping === 0 ? "Grátis" : formatBRL(shipping)}`);
+    lines.push("Frete: a calcular após confirmação do endereço.");
     if (activeCoupon && couponValue > 0) {
       lines.push(`${activeCoupon.label}: - ${formatBRL(couponValue)}`);
     }
-    lines.push(`*Total: ${formatBRL(total)}*`);
+    lines.push(`*Total dos produtos: ${formatBRL(total)}*`);
     lines.push("");
     if (activeCoupon && activeCoupon.type === "pix") {
       lines.push(`Forma de pagamento: *PIX à vista* (cupom ${activeCoupon.code} aplicado).`);
@@ -183,7 +214,11 @@
       showToast("Seu carrinho está vazio");
       return;
     }
-    const message = buildWhatsAppMessage();
+    if (!checkoutForm.reportValidity()) {
+      showToast("Preencha seus dados de contato e endereço");
+      return;
+    }
+    const message = buildWhatsAppMessage(getCheckoutData());
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank", "noopener");
     showToast("Redirecionando para o WhatsApp...");
