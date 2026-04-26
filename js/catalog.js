@@ -1,5 +1,5 @@
 /* ============================================================
- *  NEOGEO+ — Catálogo com filtros, busca e ordenação
+ *  AVROZ RETROGAMES — Catálogo com filtros, busca e ordenação
  * ============================================================ */
 
 (function () {

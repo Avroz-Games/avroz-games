@@ -1,5 +1,5 @@
 /* =========================================================
-   NEOGEO+  •  Tema Arcade Neon
+   AVROZ RETROGAMES  •  Tema Arcade Neon
    ========================================================= */
 
 :root {
@@ -115,7 +115,7 @@ h3 { font-size: 1.25rem; }
   align-items: center;
   gap: 10px;
   font-family: var(--ff-display);
-  font-size: .95rem;
+  font-size: clamp(.58rem, 1.1vw, .78rem);
   color: #fff;
   letter-spacing: 1px;
 }

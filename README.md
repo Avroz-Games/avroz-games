@@ -1,12 +1,12 @@
-# NEOGEO+ — Loja Oficial Neo Geo AES+
+# AVROZ RETROGAMES — Loja Oficial Neo Geo AES+
 
 Loja de e-commerce dedicada à linha **Neo Geo AES+**, com produtos oficiais
 importados de [Ultra Arcade Shop](https://shop.ultraarcadebh.com.br/) e
 cartuchos avulsos dos 10 clássicos da SNK.
 
 ### Consoles (3 edições independentes)
-1. **Neo Geo AES+ Original** — R$ 2.499,99 — edição preta, porta de entrada
-2. **Neo Geo AES+ Anniversary** — R$ 3.299,99 — edição branca comemorativa com joystick sem fio, Memory Card e cartucho Metal Slug
+1. **Neo Geo AES+ Original** — R$ 3.200,00 — edição preta, porta de entrada
+2. **Neo Geo AES+ Anniversary** — R$ 4.200,00 — edição branca comemorativa com joystick sem fio, Memory Card e cartucho Metal Slug
 3. **Neo Geo AES+ Ultimate** — R$ 6.499,99 — edição premium numerada com 3 controles, Memory Card e 10 cartuchos
 
 ### Acessórios
@@ -55,10 +55,24 @@ Depois acesse http://localhost:8000 no navegador.
 
 ---
 
+## Publicação no GitHub Pages
+
+O projeto já inclui o workflow `.github/workflows/pages.yml` para publicar o site estático pelo GitHub Pages.
+
+1. Envie o repositório para o GitHub na branch `main`.
+2. No GitHub, abra `Settings` > `Pages`.
+3. Em `Build and deployment`, selecione `GitHub Actions`.
+4. Faça um push para `main` ou execute o workflow `Deploy GitHub Pages` manualmente em `Actions`.
+5. Após o deploy, a URL pública aparecerá no resumo do workflow e em `Settings` > `Pages`.
+
+Como o site é HTML, CSS e JavaScript puro, não há etapa de build.
+
+---
+
 ## Estrutura do projeto
 
 ```
-NEOGEO+/
+AVROZ RETROGAMES/
 ├── index.html          → Home com hero, linha Neo Geo AES+, FAQ
 ├── produtos.html       → Catálogo com filtros e ordenação
 ├── produto.html        → Página de produto individual (com galeria)
@@ -116,7 +130,7 @@ Edite o array `PRODUCTS` em `js/products.js`. Cada produto tem o formato:
   name: "Neo Geo AES+ Original",
   category: "consoles",               // consoles | jogos | controles | acessorios
   platform: "neogeo",
-  price: 2499.99,
+  price: 3200.0,
   oldPrice: null,                     // opcional, para mostrar preço riscado
   image: "img/NEOGEO_Product.png",    // imagem principal (card e capa)
   gallery: [                          // imagens da galeria do produto
@@ -131,8 +145,8 @@ Edite o array `PRODUCTS` em `js/products.js`. Cada produto tem o formato:
   stock: 8,
   featured: true,                     // aparece em "Destaques"
   variants: [                         // opcional: variações com preços
-    { id: "original", label: "Original", price: 2499.99 },
-    { id: "anniversary", label: "Anniversary", price: 3299.99 },
+    { id: "original", label: "Original", price: 3200.0 },
+    { id: "anniversary", label: "Anniversary", price: 4200.0 },
     { id: "ultimate", label: "Ultimate", price: 6499.99 }
   ],
   meta: { "Marca": "Ultra Arcade / SNK", /* ... */ }
@@ -162,4 +176,4 @@ Edite o array `PRODUCTS` em `js/products.js`. Cada produto tem o formato:
 
 Fontes dos produtos e imagens: [Ultra Arcade Shop — Neo Geo AES+](https://shop.ultraarcadebh.com.br/search?q=neo+geo)
 
-© 2026 NEOGEO+
+© 2026 AVROZ RETROGAMES

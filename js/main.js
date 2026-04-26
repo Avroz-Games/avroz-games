@@ -1,8 +1,8 @@
 /* ============================================================
- *  NEOGEO+ — Script principal (header, carrinho global, toast)
+ *  AVROZ RETROGAMES — Script principal (header, carrinho global, toast)
  * ============================================================ */
 
-const CART_KEY = "neogeoplus_cart_v1";
+const CART_KEY = "avrozretrogames_cart_v1";
 
 /* ------------ Carrinho (localStorage) ------------ */
 const Cart = {

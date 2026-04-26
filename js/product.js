@@ -1,5 +1,5 @@
 /* ============================================================
- *  NEOGEO+ — Página de produto individual (com galeria real)
+ *  AVROZ RETROGAMES — Página de produto individual (com galeria real)
  * ============================================================ */
 
 (function () {
@@ -16,7 +16,7 @@
     return;
   }
 
-  document.title = `${product.name} | NEOGEO+`;
+  document.title = `${product.name} | AVROZ RETROGAMES`;
 
   document.getElementById("prodName").textContent = product.name;
   document.getElementById("bcName").textContent = product.name;
@@ -46,13 +46,9 @@
   }
 
   // Preço
-  const installment = (product.price / 12).toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
   const paymentLine = product.pixOnly
     ? `<span class="price-installment pix">à vista no PIX</span>`
-    : `<span class="price-installment">ou 12x de ${installment} sem juros</span>`;
+    : "";
   const priceHTML = `
     ${product.oldPrice ? `<span class="price-old">${formatBRL(product.oldPrice)}</span>` : ""}
     <span class="price-now">${product.variants ? "A partir de " : ""}${formatBRL(product.price)}</span>
@@ -86,13 +82,8 @@
         wrap.querySelectorAll(".variant-opt").forEach((el) => el.classList.remove("active"));
         r.closest(".variant-opt").classList.add("active");
         const newPrice = Number(r.dataset.price);
-        const newInst = (newPrice / 12).toLocaleString("pt-BR", {
-          style: "currency",
-          currency: "BRL",
-        });
         document.getElementById("prodPrice").innerHTML = `
           <span class="price-now">${formatBRL(newPrice)}</span>
-          <span class="price-installment">ou 12x de ${newInst} sem juros</span>
         `;
       });
     });

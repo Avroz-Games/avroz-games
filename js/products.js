@@ -1,5 +1,5 @@
 /* ============================================================
- *  NEOGEO+ — Catálogo de produtos (dados)
+ *  AVROZ RETROGAMES — Catálogo de produtos (dados)
  *  Produtos oficiais da linha Neo Geo AES+ importados de
  *  https://shop.ultraarcadebh.com.br/ (Ultra Arcade).
  * ============================================================ */
@@ -15,7 +15,7 @@ const PRODUCTS = [
     name: "Neo Geo AES+ Original",
     category: "consoles",
     platform: "neogeo",
-    price: 2800.0,
+    price: 3200.0,
     oldPrice: null,
     image: "img/NEOGEO_Product.png",
     gallery: [
@@ -75,7 +75,7 @@ const PRODUCTS = [
     name: "Neo Geo AES+ Anniversary",
     category: "consoles",
     platform: "neogeo",
-    price: 4000.0,
+    price: 4200.0,
     oldPrice: null,
     image: "img/neogeo12.webp",
     gallery: [
@@ -747,10 +747,6 @@ function calcDiscount(p) {
 /* Card HTML usando imagem real do produto --------------- */
 function productCardHTML(p) {
   const discount = calcDiscount(p);
-  const installment = (p.price / 12).toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
   const badgeHtml = p.preorder
     ? `<span class="badge preorder">PRÉ-VENDA</span>`
     : p.badge
@@ -761,7 +757,7 @@ function productCardHTML(p) {
 
   const paymentLine = p.pixOnly
     ? `<span class="price-installment pix">à vista no PIX</span>`
-    : `<span class="price-installment">ou 12x de ${installment}</span>`;
+    : "";
 
   return `
     <article class="product-card" data-id="${p.id}">

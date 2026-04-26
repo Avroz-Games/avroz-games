@@ -1,5 +1,5 @@
 /* ============================================================
- *  NEOGEO+ — Página do carrinho de compras
+ *  AVROZ RETROGAMES — Página do carrinho de compras
  * ============================================================ */
 
 (function () {
@@ -149,7 +149,7 @@
     const total = Math.max(0, subtotal - couponValue + shipping);
 
     const lines = [];
-    lines.push("Olá! Quero finalizar meu pedido na NEOGEO+.");
+    lines.push("Olá! Quero finalizar meu pedido na AVROZ RETROGAMES.");
     lines.push("");
     lines.push("*Itens do pedido:*");
     Cart.items.forEach((item) => {
@@ -170,7 +170,7 @@
     if (activeCoupon && activeCoupon.type === "pix") {
       lines.push(`Forma de pagamento: *PIX à vista* (cupom ${activeCoupon.code} aplicado).`);
     } else {
-      lines.push("Forma de pagamento: aguardo orientação (PIX, cartão em até 12x ou boleto).");
+      lines.push("Forma de pagamento: aguardo orientação (PIX, cartão ou boleto).");
     }
     lines.push("");
     lines.push("Poderia confirmar a disponibilidade e me enviar os dados para pagamento? Obrigado!");
