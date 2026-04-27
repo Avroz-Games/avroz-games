@@ -75,9 +75,25 @@ O carrinho salva o pedido no Supabase antes de abrir o WhatsApp quando `js/supab
 
 1. Crie um projeto no Supabase.
 2. Abra `SQL Editor` e execute o script `supabase/orders.sql`.
-3. No Supabase, acesse `Project Settings` > `API`.
-4. Copie a `Project URL` e a chave `anon public`.
-5. Atualize `js/supabase-config.js`:
+3. Execute também `supabase/admin-read-policy.sql`.
+4. No final do script, cadastre o e-mail administrador:
+
+```sql
+insert into public.admin_users (email) values ('seu-email@exemplo.com');
+```
+
+1. Em `Authentication` > `Providers`, mantenha `Email` habilitado.
+2. Em `Authentication` > `URL Configuration`, adicione a URL publicada em `Site URL` e `Redirect URLs`.
+
+Para acessar as vendas, abra `vendas.html`, informe o e-mail administrador e use o link recebido por e-mail.
+
+---
+
+## Configuração das Credenciais Supabase
+
+1. No Supabase, acesse `Project Settings` > `API`.
+2. Copie a `Project URL` e a chave `anon public`/`publishable`.
+3. Atualize `js/supabase-config.js`.
 
 ```js
 window.SUPABASE_CONFIG = {
@@ -93,22 +109,25 @@ Se o Supabase não estiver configurado ou ficar indisponível, o pedido ainda se
 
 ## Estrutura do projeto
 
-```
+```text
 AVROZ RETROGAMES/
 ├── index.html          → Home com hero, linha Neo Geo AES+, FAQ
 ├── produtos.html       → Catálogo com filtros e ordenação
 ├── produto.html        → Página de produto individual (com galeria)
 ├── carrinho.html       → Carrinho de compras com resumo
+├── vendas.html         → Área administrativa de vendas
 ├── contato.html        → Formulário de contato
 ├── img/                → Imagens oficiais dos produtos (PNG/WEBP)
 ├── supabase/
-│   └── orders.sql      → Script da tabela de pedidos
+│   ├── orders.sql      → Script da tabela de pedidos
+│   └── admin-read-policy.sql → Política de leitura administrativa
 ├── css/
 │   └── style.css       → Tema neon (dark mode, responsivo)
 └── js/
     ├── products.js     → Base de produtos e helpers (formatBRL, cards)
     ├── main.js         → Header, menu mobile, carrinho global, toast
     ├── supabase-config.js → Configuração pública do Supabase
+    ├── admin.js        → Consulta administrativa de vendas
     ├── catalog.js      → Filtros, ordenação e busca do catálogo
     ├── product.js      → Página de produto (galeria, variantes)
     └── cart.js         → Carrinho (itens, cadastro, Supabase, cupom, checkout)
@@ -135,6 +154,7 @@ AVROZ RETROGAMES/
   - Gravação de pedidos no Supabase
   - Frete a calcular após confirmação do endereço
   - Cupom PIX exclusivo (não divulgado na página)
+- **Área de vendas** em `vendas.html` com login por e-mail via Supabase Auth
 - **Responsivo** (desktop, tablet, mobile)
 - **Tema escuro neon** inspirado em fliperamas
 

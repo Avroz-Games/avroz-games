@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vendas | AVROZ RETROGAMES</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="announcement">
+    <p>Área administrativa AVROZ RETROGAMES</p>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img class="logo-mark" src="img/brand/diamond.svg" alt="" />
+        <span class="logo-text">AVROZ RETROGAMES</span>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="produtos.html">Catálogo</a></li>
+          <li><a href="carrinho.html">Carrinho</a></li>
+          <li><a href="vendas.html" class="active">Vendas</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-head">
+    <div class="container">
+      <nav class="breadcrumb"><a href="index.html">Home</a> / <span>Vendas</span></nav>
+      <h1>Vendas Realizadas</h1>
+      <p>Consulte os pedidos gravados no Supabase.</p>
+    </div>
+  </section>
+
+  <section class="section admin-section">
+    <div class="container">
+      <div class="admin-login" id="adminLogin">
+        <h2>Acesso administrativo</h2>
+        <p>Digite o e-mail autorizado no Supabase para receber o link de acesso.</p>
+        <form id="loginForm" class="admin-login-form">
+          <input type="email" id="adminEmail" required placeholder="seu@email.com" autocomplete="email" />
+          <button type="submit" class="btn btn-primary">Enviar link de acesso</button>
+        </form>
+        <p class="admin-note" id="loginMessage"></p>
+      </div>
+
+      <div class="admin-panel" id="adminPanel" hidden>
+        <div class="admin-toolbar">
+          <div>
+            <h2>Pedidos</h2>
+            <p id="adminUser"></p>
+          </div>
+          <div class="admin-actions">
+            <button class="btn btn-ghost" id="refreshOrders">Atualizar</button>
+            <button class="btn btn-outline" id="logoutBtn">Sair</button>
+          </div>
+        </div>
+
+        <div class="sales-stats">
+          <div><strong id="ordersCount">0</strong><span>Pedidos</span></div>
+          <div><strong id="ordersTotal">R$ 0,00</strong><span>Total em produtos</span></div>
+          <div><strong id="ordersDiscount">R$ 0,00</strong><span>Descontos</span></div>
+        </div>
+
+        <div class="orders-list" id="ordersList"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>© 2026 AVROZ RETROGAMES • Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

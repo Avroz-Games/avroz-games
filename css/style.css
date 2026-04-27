@@ -1248,6 +1248,104 @@ h3 { font-size: 1.25rem; }
 }
 .checkout-form input:focus { border-color: var(--primary); }
 
+/* ADMIN / SALES ------------------------------------------- */
+.admin-section { padding-top: 40px; }
+.admin-login,
+.admin-panel,
+.order-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.admin-login { max-width: 620px; margin: 0 auto; }
+.admin-login h2,
+.admin-panel h2 { color: #fff; }
+.admin-login p,
+.admin-note,
+.admin-toolbar p { color: var(--text-dim); }
+.admin-login-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  margin-top: 20px;
+}
+.admin-login-form input {
+  padding: 12px 14px;
+  background: var(--bg-3);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  color: var(--text);
+  outline: none;
+}
+.admin-login-form input:focus { border-color: var(--primary); }
+.admin-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.admin-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.sales-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.sales-stats div {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 18px;
+}
+.sales-stats strong {
+  display: block;
+  color: var(--accent);
+  font-size: 1.4rem;
+}
+.sales-stats span { color: var(--text-dim); }
+.orders-list { display: grid; gap: 18px; }
+.admin-empty {
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+  color: var(--text-dim);
+}
+.order-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+.order-head strong { color: #fff; word-break: break-all; }
+.order-head span,
+.order-grid p,
+.order-items li { color: var(--text-dim); }
+.order-status {
+  color: var(--green) !important;
+  border: 1px solid rgba(39, 242, 166, .35);
+  border-radius: 999px;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  font-size: .8rem;
+}
+.order-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.order-grid h4,
+.order-items h4 { color: #fff; margin-bottom: 8px; }
+.order-grid p { margin: 0 0 4px; }
+.order-items { margin-top: 18px; }
+.order-items li {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+
 /* CONTACT ------------------------------------------------- */
 .contact-layout {
   display: grid;
@@ -1364,6 +1462,8 @@ h3 { font-size: 1.25rem; }
 
   .cart-layout { grid-template-columns: 1fr; }
   .cart-summary { position: static; }
+  .admin-login-form, .sales-stats, .order-grid { grid-template-columns: 1fr; }
+  .admin-toolbar { align-items: flex-start; flex-direction: column; }
 
   .contact-layout { grid-template-columns: 1fr; }
   .field-row { grid-template-columns: 1fr; }
