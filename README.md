@@ -7,7 +7,7 @@ cartuchos avulsos dos 10 clássicos da SNK.
 ### Consoles (3 edições independentes)
 1. **Neo Geo AES+ Original** — R$ 3.200,00 — edição preta, porta de entrada
 2. **Neo Geo AES+ Anniversary** — R$ 4.700,00 — edição branca comemorativa com joystick sem fio, Memory Card e cartucho Metal Slug
-3. **Neo Geo AES+ Ultimate** — R$ 6.499,99 — edição premium numerada com 3 controles, Memory Card e 10 cartuchos
+3. **Neo Geo AES+ Ultimate** — R$ 10.200,00 — edição premium numerada com 3 controles, Memory Card e 10 cartuchos
 
 ### Acessórios
 4. **Arcade Stick Neo Geo AES+** — com fio (preto) e sem fio (branco)
@@ -202,7 +202,7 @@ Edite o array `PRODUCTS` em `js/products.js`. Cada produto tem o formato:
   variants: [                         // opcional: variações com preços
     { id: "original", label: "Original", price: 3200.0 },
     { id: "anniversary", label: "Anniversary", price: 4700.0 },
-    { id: "ultimate", label: "Ultimate", price: 6499.99 }
+    { id: "ultimate", label: "Ultimate", price: 10200.0 }
   ],
   meta: { "Marca": "Ultra Arcade / SNK", /* ... */ }
 }
