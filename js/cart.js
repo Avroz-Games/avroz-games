@@ -18,6 +18,20 @@
   let activeCoupon = null; // { code, rate, type, label } ou null
 
   const checkoutForm = document.getElementById("checkoutForm");
+  const supabaseConfig = window.SUPABASE_CONFIG || {};
+  const supabaseClient =
+    window.supabase && supabaseConfig.url && supabaseConfig.anonKey
+      ? window.supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey)
+      : null;
+
+  function getOrderTotals() {
+    const subtotal = Cart.subtotal();
+    const couponRate = activeCoupon ? activeCoupon.rate : 0;
+    const discount = subtotal * couponRate;
+    const total = Math.max(0, subtotal - discount);
+
+    return { subtotal, discount, total };
+  }
 
   function renderItems() {
     if (Cart.items.length === 0) {
@@ -79,12 +93,7 @@
   }
 
   function renderSummary() {
-    const subtotal = Cart.subtotal();
-
-    // O desconto SÓ existe quando há cupom aplicado.
-    const couponRate = activeCoupon ? activeCoupon.rate : 0;
-    const couponValue = subtotal * couponRate;
-    const total = Math.max(0, subtotal - couponValue);
+    const { subtotal, discount, total } = getOrderTotals();
 
     document.getElementById("sumSubtotal").textContent = formatBRL(subtotal);
     document.getElementById("sumShipping").textContent = subtotal === 0 ? "—" : "A calcular";
@@ -93,10 +102,10 @@
     const discountRow = document.getElementById("sumDiscountRow");
     const discountLabel = document.getElementById("sumDiscountLabel");
     const discountValue = document.getElementById("sumDiscount");
-    if (activeCoupon && couponValue > 0) {
+    if (activeCoupon && discount > 0) {
       discountRow.style.display = "";
       discountLabel.textContent = activeCoupon.label;
-      discountValue.textContent = "- " + formatBRL(couponValue);
+      discountValue.textContent = "- " + formatBRL(discount);
     } else {
       discountRow.style.display = "none";
     }
@@ -153,16 +162,73 @@
     };
   }
 
+  function getOrderItems() {
+    return Cart.items
+      .map((item) => {
+        const product = getProductById(item.id);
+        if (!product) return null;
+
+        return {
+          id: product.id,
+          name: product.name,
+          quantity: item.qty,
+          unit_price: product.price,
+          subtotal: product.price * item.qty,
+        };
+      })
+      .filter(Boolean);
+  }
+
+  function buildOrderPayload(customer) {
+    const totals = getOrderTotals();
+
+    return {
+      status: "novo",
+      source: "github-pages",
+      customer,
+      items: getOrderItems(),
+      coupon: activeCoupon
+        ? {
+            code: activeCoupon.code,
+            type: activeCoupon.type,
+            label: activeCoupon.label,
+            rate: activeCoupon.rate,
+          }
+        : null,
+      subtotal: Number(totals.subtotal.toFixed(2)),
+      discount: Number(totals.discount.toFixed(2)),
+      total: Number(totals.total.toFixed(2)),
+      shipping_status: "a_calcular",
+      payment_method: activeCoupon && activeCoupon.type === "pix" ? "pix" : "a_confirmar",
+    };
+  }
+
+  async function saveOrderToSupabase(payload) {
+    if (!supabaseClient) {
+      showToast("Supabase ainda nao configurado; pedido seguira pelo WhatsApp");
+      return null;
+    }
+
+    const table = supabaseConfig.ordersTable || "orders";
+    const { data, error } = await supabaseClient.from(table).insert(payload).select("id").single();
+
+    if (error) {
+      throw error;
+    }
+
+    return data;
+  }
+
   // Monta a mensagem de pedido que será enviada ao WhatsApp da loja.
   // Mantém o formato enxuto e em texto puro para facilitar a leitura pelo atendente.
-  function buildWhatsAppMessage(customer) {
-    const subtotal = Cart.subtotal();
-    const couponRate = activeCoupon ? activeCoupon.rate : 0;
-    const couponValue = subtotal * couponRate;
-    const total = Math.max(0, subtotal - couponValue);
+  function buildWhatsAppMessage(customer, savedOrder) {
+    const { subtotal, discount, total } = getOrderTotals();
 
     const lines = [];
     lines.push("Olá! Quero finalizar meu pedido na AVROZ RETROGAMES.");
+    if (savedOrder?.id) {
+      lines.push(`Pedido registrado no sistema: ${savedOrder.id}`);
+    }
     lines.push("");
     lines.push("*Dados do cliente:*");
     lines.push(`Nome: ${customer.name}`);
@@ -193,8 +259,8 @@
     lines.push("*Resumo:*");
     lines.push(`Subtotal: ${formatBRL(subtotal)}`);
     lines.push("Frete: a calcular após confirmação do endereço.");
-    if (activeCoupon && couponValue > 0) {
-      lines.push(`${activeCoupon.label}: - ${formatBRL(couponValue)}`);
+    if (activeCoupon && discount > 0) {
+      lines.push(`${activeCoupon.label}: - ${formatBRL(discount)}`);
     }
     lines.push(`*Total dos produtos: ${formatBRL(total)}*`);
     lines.push("");
@@ -209,7 +275,7 @@
     return lines.join("\n");
   }
 
-  document.getElementById("checkoutBtn").addEventListener("click", () => {
+  document.getElementById("checkoutBtn").addEventListener("click", async () => {
     if (Cart.items.length === 0) {
       showToast("Seu carrinho está vazio");
       return;
@@ -218,7 +284,19 @@
       showToast("Preencha seus dados de contato e endereço");
       return;
     }
-    const message = buildWhatsAppMessage(getCheckoutData());
+
+    const customer = getCheckoutData();
+    const orderPayload = buildOrderPayload(customer);
+    let savedOrder = null;
+
+    try {
+      savedOrder = await saveOrderToSupabase(orderPayload);
+    } catch (error) {
+      console.error("Erro ao salvar pedido no Supabase:", error);
+      showToast("Nao foi possivel salvar no Supabase; pedido seguira pelo WhatsApp");
+    }
+
+    const message = buildWhatsAppMessage(customer, savedOrder);
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank", "noopener");
     showToast("Redirecionando para o WhatsApp...");

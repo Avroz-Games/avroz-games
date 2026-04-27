@@ -16,5 +16,6 @@ node_modules/
 
 # Artefatos de deploy
 neogeo-plus-deploy.zip
+backups/
 .vercel/
 .netlify/

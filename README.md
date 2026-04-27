@@ -26,9 +26,9 @@ cartuchos avulsos dos 10 clássicos da SNK.
 9. Magician Lord (1990)
 10. Over Top (1996)
 
-É um projeto **100% front-end estático** (HTML + CSS + JavaScript puro) — não
-requer build, banco de dados nem servidor. O carrinho é persistido no
-`localStorage` do navegador.
+É um projeto **front-end estático** (HTML + CSS + JavaScript puro) hospedado no GitHub Pages.
+O carrinho é persistido no `localStorage` do navegador e os pedidos podem ser gravados no Supabase
+quando as credenciais públicas forem configuradas em `js/supabase-config.js`.
 
 ---
 
@@ -69,6 +69,28 @@ Como o site é HTML, CSS e JavaScript puro, não há etapa de build.
 
 ---
 
+## Banco de Dados Supabase
+
+O carrinho salva o pedido no Supabase antes de abrir o WhatsApp quando `js/supabase-config.js` estiver configurado.
+
+1. Crie um projeto no Supabase.
+2. Abra `SQL Editor` e execute o script `supabase/orders.sql`.
+3. No Supabase, acesse `Project Settings` > `API`.
+4. Copie a `Project URL` e a chave `anon public`.
+5. Atualize `js/supabase-config.js`:
+
+```js
+window.SUPABASE_CONFIG = {
+  url: "https://SEU-PROJETO.supabase.co",
+  anonKey: "SUA_CHAVE_ANON_PUBLIC",
+  ordersTable: "orders",
+};
+```
+
+Se o Supabase não estiver configurado ou ficar indisponível, o pedido ainda segue pelo WhatsApp, mas não é gravado no banco.
+
+---
+
 ## Estrutura do projeto
 
 ```
@@ -79,14 +101,17 @@ AVROZ RETROGAMES/
 ├── carrinho.html       → Carrinho de compras com resumo
 ├── contato.html        → Formulário de contato
 ├── img/                → Imagens oficiais dos produtos (PNG/WEBP)
+├── supabase/
+│   └── orders.sql      → Script da tabela de pedidos
 ├── css/
 │   └── style.css       → Tema neon (dark mode, responsivo)
 └── js/
     ├── products.js     → Base de produtos e helpers (formatBRL, cards)
     ├── main.js         → Header, menu mobile, carrinho global, toast
+    ├── supabase-config.js → Configuração pública do Supabase
     ├── catalog.js      → Filtros, ordenação e busca do catálogo
     ├── product.js      → Página de produto (galeria, variantes)
-    └── cart.js         → Carrinho (itens, resumo, cupom, checkout)
+    └── cart.js         → Carrinho (itens, cadastro, Supabase, cupom, checkout)
 ```
 
 ---
@@ -107,6 +132,7 @@ AVROZ RETROGAMES/
   - Persistência no `localStorage` (sobrevive ao refresh)
   - Alteração de quantidade e remoção
   - Cadastro obrigatório com dados de contato e endereço
+  - Gravação de pedidos no Supabase
   - Frete a calcular após confirmação do endereço
   - Cupom PIX exclusivo (não divulgado na página)
 - **Responsivo** (desktop, tablet, mobile)
@@ -167,11 +193,10 @@ Edite o array `PRODUCTS` em `js/products.js`. Cada produto tem o formato:
 
 ## Próximos passos sugeridos
 
-1. Integrar com um back-end (Node/Python/PHP) para persistir pedidos
-2. Integrar gateway de pagamento (Mercado Pago, Pagar.me, Stripe, PayPal)
-3. Adicionar login/cadastro de usuários
-4. Painel admin para gerenciar produtos e pedidos
-5. Integrar Correios para cálculo real de frete por CEP
+1. Integrar gateway de pagamento (Mercado Pago, Pagar.me, Stripe, PayPal)
+2. Adicionar login/cadastro de usuários
+3. Criar painel admin para gerenciar produtos e pedidos
+4. Integrar Correios para cálculo real de frete por CEP
 
 ---
 
