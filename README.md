@@ -76,7 +76,8 @@ O carrinho salva o pedido no Supabase antes de abrir o WhatsApp quando `js/supab
 1. Crie um projeto no Supabase.
 2. Abra `SQL Editor` e execute o script `supabase/orders.sql`.
 3. Execute também `supabase/admin-read-policy.sql`.
-4. No final do script, cadastre o e-mail administrador:
+4. Execute o script `supabase/visits.sql` para criar o contador administrativo.
+5. No final do script administrativo, cadastre o e-mail administrador:
 
 ```sql
 insert into public.admin_users (email) values ('seu-email@exemplo.com');
@@ -85,7 +86,7 @@ insert into public.admin_users (email) values ('seu-email@exemplo.com');
 1. Em `Authentication` > `Providers`, mantenha `Email` habilitado.
 2. Em `Authentication` > `URL Configuration`, adicione a URL publicada em `Site URL` e `Redirect URLs`.
 
-Para acessar as vendas, abra `vendas.html`, informe o e-mail administrador e use o link recebido por e-mail.
+Para acessar as vendas e o contador de visitas, abra `vendas.html`, informe o e-mail administrador e use o link recebido por e-mail.
 
 ---
 
@@ -100,6 +101,7 @@ window.SUPABASE_CONFIG = {
   url: "https://SEU-PROJETO.supabase.co",
   anonKey: "SUA_CHAVE_ANON_PUBLIC",
   ordersTable: "orders",
+  visitsTable: "site_visits",
 };
 ```
 
@@ -115,11 +117,12 @@ AVROZ RETROGAMES/
 ├── produtos.html       → Catálogo com filtros e ordenação
 ├── produto.html        → Página de produto individual (com galeria)
 ├── carrinho.html       → Carrinho de compras com resumo
-├── vendas.html         → Área administrativa de vendas
+├── vendas.html         → Área administrativa de vendas e visitas
 ├── contato.html        → Formulário de contato
 ├── img/                → Imagens oficiais dos produtos (PNG/WEBP)
 ├── supabase/
 │   ├── orders.sql      → Script da tabela de pedidos
+│   ├── visits.sql      → Script da tabela do contador de visitas
 │   └── admin-read-policy.sql → Política de leitura administrativa
 ├── css/
 │   └── style.css       → Tema neon (dark mode, responsivo)
@@ -127,7 +130,8 @@ AVROZ RETROGAMES/
     ├── products.js     → Base de produtos e helpers (formatBRL, cards)
     ├── main.js         → Header, menu mobile, carrinho global, toast
     ├── supabase-config.js → Configuração pública do Supabase
-    ├── admin.js        → Consulta administrativa de vendas
+    ├── admin.js        → Consulta administrativa de vendas e visitas
+    ├── visits.js       → Registro de visitas no Supabase
     ├── catalog.js      → Filtros, ordenação e busca do catálogo
     ├── product.js      → Página de produto (galeria, variantes)
     └── cart.js         → Carrinho (itens, cadastro, Supabase, cupom, checkout)
@@ -155,6 +159,7 @@ AVROZ RETROGAMES/
   - Frete a calcular após confirmação do endereço
   - Cupom PIX exclusivo (não divulgado na página)
 - **Área de vendas** em `vendas.html` com login por e-mail via Supabase Auth
+- **Contador administrativo de visitas** gravado no Supabase e visível apenas no painel
 - **Responsivo** (desktop, tablet, mobile)
 - **Tema escuro neon** inspirado em fliperamas
 

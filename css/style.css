@@ -1345,6 +1345,26 @@ h3 { font-size: 1.25rem; }
   padding: 6px 0;
   border-bottom: 1px solid var(--border);
 }
+.visits-list { margin: 0 0 26px; }
+.visit-table {
+  display: grid;
+  gap: 10px;
+}
+.visit-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 6px 16px;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+}
+.visit-row strong { color: #fff; word-break: break-word; }
+.visit-row span,
+.visit-row small {
+  color: var(--text-dim);
+  word-break: break-word;
+}
 
 /* CONTACT ------------------------------------------------- */
 .contact-layout {
@@ -1464,6 +1484,7 @@ h3 { font-size: 1.25rem; }
   .cart-summary { position: static; }
   .admin-login-form, .sales-stats, .order-grid { grid-template-columns: 1fr; }
   .admin-toolbar { align-items: flex-start; flex-direction: column; }
+  .visit-row { grid-template-columns: 1fr; }
 
   .contact-layout { grid-template-columns: 1fr; }
   .field-row { grid-template-columns: 1fr; }

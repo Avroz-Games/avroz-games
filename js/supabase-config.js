@@ -4,4 +4,5 @@ window.SUPABASE_CONFIG = {
   url: "https://etrjynwlzzjypelgdhrn.supabase.co",
   anonKey: "sb_publishable_AaewFXnEtoruAO_y_ggVQw_J0LMbFnj",
   ordersTable: "orders",
+  visitsTable: "site_visits",
 };
