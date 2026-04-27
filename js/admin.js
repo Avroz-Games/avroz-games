@@ -20,6 +20,7 @@
   const visitsList = document.getElementById("visitsList");
   const refreshBtn = document.getElementById("refreshOrders");
   const logoutBtn = document.getElementById("logoutBtn");
+  const ADMIN_EMAIL = "caetano.james@gmail.com";
 
   function formatBRL(value) {
     return Number(value || 0).toLocaleString("pt-BR", {
@@ -237,16 +238,24 @@
       return;
     }
 
-    const email = document.getElementById("adminEmail").value.trim();
+    const email = document.getElementById("adminEmail").value.trim().toLowerCase();
+    if (email !== ADMIN_EMAIL) {
+      setMessage(`Use o e-mail administrador autorizado: ${ADMIN_EMAIL}`);
+      return;
+    }
+
     const redirectTo = `${location.origin}${location.pathname}`;
     const { error } = await supabaseClient.auth.signInWithOtp({
       email,
-      options: { emailRedirectTo: redirectTo },
+      options: {
+        emailRedirectTo: redirectTo,
+        shouldCreateUser: true,
+      },
     });
 
     setMessage(
       error
-        ? "Não foi possível enviar o link. Verifique o e-mail e as configurações do Supabase."
+        ? `Não foi possível enviar o link: ${error.message || "verifique as configurações do Supabase."}`
         : "Link enviado. Verifique seu e-mail para acessar a área de vendas."
     );
   });
