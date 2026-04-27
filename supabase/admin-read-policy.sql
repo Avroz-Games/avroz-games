@@ -27,5 +27,6 @@ using (
   )
 );
 
--- Depois de executar este script, cadastre seu e-mail administrador:
--- insert into public.admin_users (email) values ('seu-email@exemplo.com');
+insert into public.admin_users (email)
+values ('caetano.james@gmail.com')
+on conflict (email) do nothing;

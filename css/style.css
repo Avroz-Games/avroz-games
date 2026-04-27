@@ -1365,6 +1365,30 @@ h3 { font-size: 1.25rem; }
   color: var(--text-dim);
   word-break: break-word;
 }
+.public-visit-counter {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(11, 18, 32, .92);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  box-shadow: var(--shadow-neon);
+  backdrop-filter: blur(12px);
+}
+.public-visit-counter span {
+  color: var(--text-dim);
+  font-size: .85rem;
+  font-weight: 700;
+}
+.public-visit-counter strong {
+  color: var(--accent);
+  font-size: 1rem;
+}
 
 /* CONTACT ------------------------------------------------- */
 .contact-layout {
@@ -1509,4 +1533,9 @@ h3 { font-size: 1.25rem; }
     justify-self: start;
   }
   .cart-item .ci-price { justify-self: end; text-align: right; }
+  .public-visit-counter {
+    right: 12px;
+    bottom: 12px;
+    padding: 8px 12px;
+  }
 }

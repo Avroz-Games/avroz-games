@@ -76,11 +76,13 @@ O carrinho salva o pedido no Supabase antes de abrir o WhatsApp quando `js/supab
 1. Crie um projeto no Supabase.
 2. Abra `SQL Editor` e execute o script `supabase/orders.sql`.
 3. Execute também `supabase/admin-read-policy.sql`.
-4. Execute o script `supabase/visits.sql` para criar o contador administrativo.
-5. No final do script administrativo, cadastre o e-mail administrador:
+4. Execute o script `supabase/visits.sql` para criar o contador administrativo e público.
+5. O e-mail administrador já está definido nos scripts como `caetano.james@gmail.com`.
 
 ```sql
-insert into public.admin_users (email) values ('seu-email@exemplo.com');
+insert into public.admin_users (email)
+values ('caetano.james@gmail.com')
+on conflict (email) do nothing;
 ```
 
 1. Em `Authentication` > `Providers`, mantenha `Email` habilitado.
@@ -159,7 +161,8 @@ AVROZ RETROGAMES/
   - Frete a calcular após confirmação do endereço
   - Cupom PIX exclusivo (não divulgado na página)
 - **Área de vendas** em `vendas.html` com login por e-mail via Supabase Auth
-- **Contador administrativo de visitas** gravado no Supabase e visível apenas no painel
+- **Contador público de visitas** exibido no site
+- **Contador administrativo de visitas** com detalhes no painel restrito
 - **Responsivo** (desktop, tablet, mobile)
 - **Tema escuro neon** inspirado em fliperamas
 

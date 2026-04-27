@@ -50,3 +50,18 @@ using (
     where lower(admin.email) = lower(auth.jwt() ->> 'email')
   )
 );
+
+insert into public.admin_users (email)
+values ('caetano.james@gmail.com')
+on conflict (email) do nothing;
+
+create or replace function public.get_site_visit_count()
+returns bigint
+language sql
+security definer
+set search_path = public
+as $$
+  select count(*) from public.site_visits;
+$$;
+
+grant execute on function public.get_site_visit_count() to anon, authenticated;
