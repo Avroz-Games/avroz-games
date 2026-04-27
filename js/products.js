@@ -75,7 +75,7 @@ const PRODUCTS = [
     name: "Neo Geo AES+ Anniversary",
     category: "consoles",
     platform: "neogeo",
-    price: 4200.0,
+    price: 4700.0,
     oldPrice: null,
     image: "img/neogeo12.webp",
     gallery: [
@@ -135,7 +135,7 @@ const PRODUCTS = [
     name: "Neo Geo AES+ Ultimate",
     category: "consoles",
     platform: "neogeo",
-    price: 9000.0,
+    price: 10200.0,
     oldPrice: null,
     image: "img/neogeo3.webp",
     gallery: [
