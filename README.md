@@ -119,6 +119,7 @@ AVROZ RETROGAMES/
 ├── produtos.html       → Catálogo com filtros e ordenação
 ├── produto.html        → Página de produto individual (com galeria)
 ├── carrinho.html       → Carrinho de compras com resumo
+├── noticias.html       → Últimas notícias e vídeos sobre Neo Geo AES+
 ├── vendas.html         → Área administrativa de vendas e visitas
 ├── contato.html        → Formulário de contato
 ├── img/                → Imagens oficiais dos produtos (PNG/WEBP)
@@ -161,6 +162,7 @@ AVROZ RETROGAMES/
   - Frete a calcular após confirmação do endereço
   - Cupom PIX exclusivo (não divulgado na página)
 - **Área de vendas** em `vendas.html` com login por e-mail via Supabase Auth
+- **Últimas notícias** com resumos de fontes externas e vídeos públicos sobre o Neo Geo AES+
 - **Contador público de visitas** exibido no site
 - **Contador administrativo de visitas** com detalhes no painel restrito
 - **Responsivo** (desktop, tablet, mobile)
